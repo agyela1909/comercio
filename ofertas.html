@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ofertas | FotoStudio GORED</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #10090c;
+            color: #f8e8e8;
+            font-family: Georgia, serif;
+        }
+
+        header,
+        footer {
+            background: #080507;
+            text-align: center;
+            padding: 22px 15px;
+            color: #d6a0ae;
+        }
+
+        h1,
+        h2,
+        h3 {
+            color: #e8bd91;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+            background: #211016;
+            padding: 15px;
+        }
+
+        nav a,
+        button {
+            background: #4a202e;
+            color: white;
+            text-decoration: none;
+            padding: 10px 13px;
+            border: 1px solid #bd8b70;
+            border-radius: 20px;
+            margin: 4px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        nav a:hover,
+        button:hover {
+            background: #d6a0ae;
+            color: #210d15;
+        }
+
+        main {
+            max-width: 1150px;
+            margin: auto;
+            padding: 35px 18px;
+            text-align: center;
+        }
+
+        .productos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tarjeta {
+            background: #24131b;
+            border: 1px solid #986b65;
+            border-radius: 12px;
+            padding: 20px;
+            width: 270px;
+        }
+
+        .tarjeta img {
+            width: 100%;
+            height: 175px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .precio {
+            color: #e9b5c2;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 600px) {
+            .tarjeta {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>FotoStudio GORED</h1>
+        <p>Encuentra algo especial para ti</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Inicio</a>
+        <a href="camaras.html">Cámaras</a>
+        <a href="lentes.html">Lentes</a>
+        <a href="accesorios.html">Accesorios</a>
+        <a href="galeria.html">Galería</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="impresiones.html">Impresiones</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="ofertas.html">Ofertas</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="carrito.html">Carrito 🛒</a>
+    </nav>
+
+    <main>
+
+        <h2>Nuestras ofertas</h2>
+
+        <p>
+            Descubre paquetes y productos destacados de FotoStudio GORED.
+        </p>
+
+        <div class="productos">
+
+            <div class="tarjeta">
+                <img src="imagenes/oferta1.jpg" alt="Paquete de fotografía">
+
+                <h3>Paquete de fotografía</h3>
+
+                <p>
+                    Una selección para comenzar tu colección.
+                </p>
+
+                <p class="precio">$1,990</p>
+
+                <button onclick="agregar('Paquete de fotografía', 1990)">
+                    Agregar al carrito
+                </button>
+            </div>
+
+            <div class="tarjeta">
+                <img src="imagenes/oferta2.jpg" alt="Kit de accesorios">
+
+                <h3>Kit de accesorios</h3>
+
+                <p>
+                    Accesorios básicos para tus sesiones.
+                </p>
+
+                <p class="precio">$750</p>
+
+                <button onclick="agregar('Kit de accesorios', 750)">
+                    Agregar al carrito
+                </button>
+            </div>
+
+            <div class="tarjeta">
+                <img src="imagenes/oferta3.jpg" alt="Paquete de impresiones">
+
+                <h3>Paquete de impresiones</h3>
+
+                <p>
+                    Imprime tus mejores momentos.
+                </p>
+
+                <p class="precio">$120</p>
+
+                <button onclick="agregar('Paquete de impresiones', 120)">
+                    Agregar al carrito
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+        <p>FotoStudio GORED</p>
+        <p>© 2026 - Todos los derechos reservados</p>
+    </footer>
+
+    <script>
+        function agregar(nombre, precio) {
+
+            let carrito = JSON.parse(
+                localStorage.getItem('carritoFoto')
+            ) || [];
+
+            let producto = carrito.find(
+                p => p.nombre === nombre
+            );
+
+            if (producto) {
+
+                producto.cantidad++;
+
+            } else {
+
+                carrito.push({
+                    nombre: nombre,
+                    precio: precio,
+                    cantidad: 1
+                });
+
+            }
+
+            localStorage.setItem(
+                'carritoFoto',
+                JSON.stringify(carrito)
+            );
+
+            alert('Producto agregado al carrito');
+
+        }
+    </script>
+
+</body>
+</html>
